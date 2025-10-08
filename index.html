@@ -1,15 +1,126 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Top 4 Books</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 30px;
+      color: #222;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    ol.books {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      counter-reset: book;
+    }
+
+    ol.books li {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+    }
+
+    ol.books li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    ol.books li::before {
+      counter-increment: book;
+      content: counter(book);
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #0078d7;
+      color: #fff;
+      font-weight: bold;
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      border-radius: 50%;
+    }
+
+    .cover {
+      width: 100%;
+      height: 240px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .details {
+      padding: 12px;
+    }
+
+    .title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 6px;
+    }
+
+    .author {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    .year {
+      font-size: 0.8rem;
+      color: #888;
+    }
+  </style>
 </head>
 <body>
-    <h1>Mern training -> task1</h1>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-    tempora aut iusto necessitatibus error ab soluta dolores explicabo? 
-    Eveniet perspiciatis maiores laudantium consectetur provident totam eligendi illum nihil,
-    ipsa ab.</p>
+  <h1>📚 Top 4 Books to Read</h1>
+  <ol class="books">
+    <li>
+      <div class="cover" style="background-image: url('https://covers.openlibrary.org/b/id/8228691-L.jpg');"></div>
+      <div class="details">
+        <div class="title">To Kill a Mockingbird</div>
+        <div class="author">by Harper Lee</div>
+        <div class="year">Published: 1960</div>
+      </div>
+    </li>
+    <li>
+      <div class="cover" style="background-image: url('https://covers.openlibrary.org/b/id/10523366-L.jpg');"></div>
+      <div class="details">
+        <div class="title">1984</div>
+        <div class="author">by George Orwell</div>
+        <div class="year">Published: 1949</div>
+      </div>
+    </li>
+    <li>
+      <div class="cover" style="background-image: url('https://covers.openlibrary.org/b/id/8231856-L.jpg');"></div>
+      <div class="details">
+        <div class="title">The Great Gatsby</div>
+        <div class="author">by F. Scott Fitzgerald</div>
+        <div class="year">Published: 1925</div>
+      </div>
+    </li>
+    <li>
+      <div class="cover" style="background-image: url('https://covers.openlibrary.org/b/id/8167890-L.jpg');"></div>
+      <div class="details">
+        <div class="title">Pride and Prejudice</div>
+        <div class="author">by Jane Austen</div>
+        <div class="year">Published: 1813</div>
+      </div>
+    </li>
+  </ol>
 </body>
 </html>

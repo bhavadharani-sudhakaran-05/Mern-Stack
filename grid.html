@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+   .container
+   { display:grid;
+    grid-template-columns:80px 80px 80px 80px 80px;
+    grid-template-rows:80px 80px 80px 80px;
+    row-gap:5px;
+    column-gap:5px;
+background-color: aqua;
+padding:5px;
+width:420px;
+   }
+   .container > div{
+    background-color: rgb(183, 20, 69);
+    font-size:30px;  
+    text-align:center;
+    color: aliceblue;
+  }
+  .h
+  {
+   grid-column-start: 1;
+   grid-column-end:6;
+  }
+  .hh
+  {
+   grid-row-start: 2;
+   grid-row-end:4;
+  }
+  .gg
+  {
+   grid-column-start: 2;
+   grid-column-end:6;
+  }
+  .g
+  {
+   grid-column-start: 2;
+   grid-column-end:4;
+  }
+  .b{
+   grid-column-start: 4;
+   grid-column-end:6;
+  }
+  .bb
+  {
+   grid-column-start: 1;
+   grid-column-end:6;
+  } 
+  @media(max-width:500px)
+  {
+    .container{
+      display:flex;
+      flex-direction:column;
+      background-color: blue;
+    }
+  }
+  </style>
+</head>
+<body>
+<h1>Grid</h1>
+<div class="container">
+  <div  class="h" style="border:solid;border-color: rgb(9, 15, 18);border-radius:10px;align-content: center;">head</div>
+  <div class="hh" style="border:solid;border-color: rgb(9, 15, 18);border-radius:10px;align-content: center;">head1</div>
+  <div class="gg" style="border:solid;border-color: rgb(9, 15, 18);border-radius:10px;align-content: center;">head2</div>
+  <div class="g" style="border:solid;border-color: rgb(9, 15, 18);border-radius:10px;align-content: center;">head3</div>
+  <div class="b" style="border:solid;border-color: rgb(9, 15, 18);border-radius:10px;align-content: center;">head4</div>
+  <div class="bb" style="border:solid;border-color: rgb(9, 15, 18);border-radius:10px;align-content: center;">head5</div>
+</div>
+</body>
+</html>

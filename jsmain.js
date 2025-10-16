@@ -1,4 +1,4 @@
-function double(num)
+/*function double(num)
 {
     return num*2;
 }
@@ -123,7 +123,22 @@ fetchApi();
 
 let name='asdf'
 let age=24
-console.log(`I am ${name} and my age is ${age}`);
+console.log(`I am ${name} and my age is ${age}`); */
+
+const mul=(a,b)=>
+{
+    return a*b;
+}
+const squ=(n)=>
+{
+    return mul(n,n);
+}
+const print=(n)=>
+{
+    let s=squ(n);
+    console.log(n);
+}
+print(4);
 
 
 

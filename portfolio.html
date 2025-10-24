@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bhavadharani S — MERN Developer Portfolio</title>
+<meta name="description" content="Portfolio of Bhavadharani S — IT undergraduate, MERN Stack Developer & UI/UX Designer." />
+<style>
+:root {
+  --accent: #C147E9;
+  --bg1: #2E073F;
+  --bg2: #4F1271;
+  --text: #f5f5f5;
+  --card-bg: rgba(255,255,255,0.1);
+  --muted: #a1a1aa;
+}
+body.light {
+  --bg1: #ffffff;
+  --bg2: #f9f9f9;
+  --text: #222;
+  --accent: #8e24aa;
+  --card-bg: #f3f3f3;
+  --muted: #555;
+}
+* {margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;scroll-behavior:smooth;}
+body {
+  background: linear-gradient(120deg,var(--bg1),var(--bg2));
+  color: var(--text);
+  overflow-x:hidden;
+  transition:0.6s;
+}
+header {
+  position: fixed; top:0; left:0; right:0;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:15px 40px; background:rgba(46,7,63,0.9);
+  box-shadow:0 3px 15px rgba(0,0,0,0.4); backdrop-filter:blur(8px); z-index:1000;
+  transition:0.4s;
+}
+body.light header{background:rgba(255,255,255,0.9);}
+header h1{color:var(--text); font-weight:600;}
+nav a{color:var(--text); text-decoration:none; margin:0 15px; font-weight:500; transition:0.3s;}
+nav a:hover{color:var(--accent); transform:scale(1.1);}
+nav a.active{color:var(--accent); border-bottom:2px solid var(--accent); padding-bottom:2px;}
+.theme-toggle{background:var(--accent); color:#fff; border:none; padding:8px 15px; border-radius:20px; cursor:pointer; transition:0.3s;}
+.theme-toggle:hover{transform:scale(1.1);}
+
+/* Hero */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  padding:0 20px;
+}
+.hero h2{font-size:3em; margin-bottom:10px;}
+.hero p{font-size:1.2em; max-width:700px; margin-bottom:15px;}
+.typing{color:var(--accent); font-weight:600;}
+.btn{margin:10px; padding:10px 25px; border:none; color:white; border-radius:50px; background:linear-gradient(45deg,var(--accent),#9C27B0); cursor:pointer; transition:0.3s; text-decoration:none;}
+.btn:hover{transform:scale(1.05); box-shadow:0 0 15px var(--accent);}
+
+/* Floating tech logos */
+.tech-logo {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  opacity: 0.9;
+  animation: floatAnimation 20s infinite ease-in-out;
+}
+.tech-logo img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Different animations for each logo */
+.tech-logo:nth-child(1){ animation-delay:0s; }
+.tech-logo:nth-child(2){ animation-delay:3s; }
+.tech-logo:nth-child(3){ animation-delay:6s; }
+.tech-logo:nth-child(4){ animation-delay:9s; }
+.tech-logo:nth-child(5){ animation-delay:12s; }
+.tech-logo:nth-child(6){ animation-delay:15s; }
+
+@keyframes floatAnimation {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(40vw, -20vh) rotate(30deg); }
+  50% { transform: translate(-30vw, 10vh) rotate(-30deg); }
+  75% { transform: translate(20vw, 25vh) rotate(15deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Sections */
+section{padding:100px 60px; max-width:1100px; margin:auto; opacity:0; transform:translateY(30px); transition:all 0.8s ease;}
+section.visible{opacity:1; transform:translateY(0);}
+
+/* About */
+.about{text-align:center;}
+.about img{width:250px; border-radius:20%; margin-bottom:20px; border:3px solid var(--accent);}
+.social-links a{margin:0 10px; padding:8px 15px; border-radius:25px; background:var(--accent); color:white; text-decoration:none; display:inline-block; transition:0.3s;}
+.social-links a:hover{transform:scale(1.1); box-shadow:0 0 12px var(--accent);}
+
+/* Skills Section */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+.skill-card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 25px;
+  text-align: center;
+  transition: transform 0.5s, box-shadow 0.5s;
+  cursor: pointer;
+}
+.skill-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(193,71,233,0.7);
+}
+
+/* Liquid Circle */
+.liquid-circle {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 15px;
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 0 15px rgba(193,71,233,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.liquid-circle .icon { font-size: 2em; position: relative; z-index: 2; }
+.liquid-circle .percent { position: absolute; bottom: 10px; font-weight: 600; color: var(--text); z-index: 2; }
+.liquid-circle .wave {
+  position: absolute;
+  bottom: 0;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg,#C147E9,#9C27B0);
+  border-radius: 40%;
+  transform: translate(-50%, 50%) rotate(0deg);
+  animation: wave-animation 4s infinite linear;
+  opacity: 0.6;
+}
+@keyframes wave-animation {
+  0% { transform: translate(-50%, 50%) rotate(0deg); }
+  100% { transform: translate(-50%, 50%) rotate(360deg); }
+}
+
+
+/* Projects & Certifications */
+.projects-grid, .certifications-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  align-items: center;
+}
+.project-card, .cert-card {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 25px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(193,71,233,0.4);
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+.project-card:hover, .cert-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(193,71,233,0.8);
+}
+.project-card h3, .cert-card h3 {
+  color: var(--accent);
+  margin-bottom: 15px;
+}
+.project-card p, .cert-card p {
+  font-size: 0.95em;
+  margin-bottom: 15px;
+}
+.project-links .btn, .cert-card a.btn {
+  display: inline-block;
+  margin: 5px;
+}
+
+/* Timeline */
+.timeline{position:relative; margin-top:50px; border-left:3px solid var(--accent); padding-left:40px;}
+.timeline-item{margin-bottom:30px; position:relative; cursor:pointer;}
+.timeline-item::before{content:""; position:absolute; width:14px; height:14px; left:-35px; top:5px; background:var(--accent); border-radius:50%; box-shadow:0 0 8px var(--accent);}
+.timeline-item h4{color:var(--accent);}
+.timeline-item p{opacity:0; max-height:0; overflow:hidden; transition:all 0.5s ease;}
+.timeline-item.active p{opacity:1; max-height:200px; margin-top:10px;}
+
+/* Contact */
+form{text-align:center;}
+form input, form textarea{width:80%; max-width:500px; padding:10px; border:none; border-radius:5px; margin-bottom:15px;}
+form button{display:inline-block; padding:10px 25px; border:none; border-radius:50px; background:var(--accent); color:#fff; font-weight:500; cursor:pointer; transition:0.3s;}
+form button:hover{transform:scale(1.05); box-shadow:0 0 10px var(--accent);}
+
+footer{text-align:center; padding:25px; background:rgba(0,0,0,0.3); color:white;}
+body.light footer{background:#f2f2f2; color:#222;} 
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Bhavadharani S</h1>
+  <nav>
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#internship">Internship</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle">🌙</button>
+</header>
+
+<section class="hero" id="home">
+  <h2>Hi, I'm <span class="typing"></span></h2>
+  <p>Full Stack Developer | 3rd Year IT Student passionate about building modern web apps.</p>
+  <button class="btn" onclick="window.location='#projects'">Explore My Work</button>
+  <button class="btn" onclick="alert('Downloading Resume...')">📄 Download Resume</button>
+
+  <!-- Floating Tech Logos -->
+  
+</section>
+
+<section class="about" id="about">
+  <img src="https://avatars.githubusercontent.com/u/209255184?v=4" alt="Profile" >
+  <h2>About Me</h2>
+  <br>
+  <h3>Bhavadharani S
+B.Tech in Information Technology | Aspiring Full Stack Developer
+
+I am a passionate and dedicated IT undergraduate currently pursuing B.Tech at SSRI Shakthi Institute of Engineering and Technology. I possess strong technical skills in C, C++, Java, JavaScript, HTML, CSS, React.js, along with proficiency in UI/UX design using Figma. I have also gained hands-on experience with Node.js, MongoDB, Git, RESTful APIs, and responsive web design, which complements my goal of becoming a full stack developer.
+
+I have successfully completed 7 projects and completed a 6-month internship at UDRCrafts, where I applied my technical expertise to real-world projects. Additionally, I hold relevant certifications that reflect my commitment to continuous learning and professional growth.
+
+My objective is to leverage my skills in full-stack development, creating innovative, efficient, and user-centric applications while continuously enhancing my expertise in modern web technologies.</h3>
+  <br><p><b>Email:</b> bhava05dharu05@gmail.com | <b>Contact:</b> +91-6383632556</p>
+  <br><div class="social-links">
+    <a href="https://www.linkedin.com/in/bhavadharani-s-05it/" target="_blank">LinkedIn</a>
+    <a href="https://github.com/Bhava05Dharu" target="_blank">GitHub</a>
+    <a href="#" target="_blank">LeetCode</a>
+  </div>
+</section>
+
+<section class="skills" id="skills">
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="liquid-circle" data-percent="90">
+        <span class="icon">💻</span>
+        <span class="percent">0%</span>
+        <div class="wave"></div>
+      </div>
+      <h3>Languages</h3>
+      <p>Java, C, JavaScript, HTML, CSS, SQL, NoSQL</p>
+    </div>
+    <div class="skill-card">
+      <div class="liquid-circle" data-percent="85">
+        <span class="icon">⚙️</span>
+        <span class="percent">0%</span>
+        <div class="wave"></div>
+      </div>
+      <h3>Frameworks & Tools</h3>
+      <p>ReactJS, NodeJS, Express, Spring Boot, GitHub, VS Code</p>
+    </div>
+    <div class="skill-card">
+      <div class="liquid-circle" data-percent="80">
+        <span class="icon">🎨</span>
+        <span class="percent">0%</span>
+        <div class="wave"></div>
+      </div>
+      <h3>UI/UX & Design</h3>
+      <p>Figma, Adobe XD, Wireframing, Prototyping, Responsive Design</p>
+    </div>
+    <div class="skill-card">
+      <div class="liquid-circle" data-percent="75">
+        <span class="icon">🗄️</span>
+        <span class="percent">0%</span>
+        <div class="wave"></div>
+      </div>
+      <h3>Databases</h3>
+      <p>MySQL, MongoDB</p>
+    </div>
+    <div class="skill-card">
+      <div class="liquid-circle" data-percent="70">
+        <span class="icon">💡</span>
+        <span class="percent">0%</span>
+        <div class="wave"></div>
+      </div>
+      <h3>Soft Skills</h3>
+      <p>Creativity, Problem Solving, Critical Thinking, Team Collaboration</p>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+  <h2>Projects</h2><br><br>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <h3>Online Examination Portal</h3>
+      <p>A secure, AI-proctored exam system with Face Detection & Monitoring, Tab-switch detection, and score tracking.</p>
+      <div class="project-links">
+        <a href="https://github.com/bhavadharani-sudhakaran-05/Online-Exam-Portal-" target="_blank" class="btn">GitHub</a>
+        <a href="https://www.linkedin.com/posts/bhavadharani-s-05it_project-completed-online-examination-activity-7356604774558941184-ow0e?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEbxr1QBSWbCi8bWCKX68Xw0jkefpd1L6nI" class="btn">View</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>PMSSS – Prime Minister Special Scholarship Scheme</h3>
+      <p>Developed a web portal for J&K & Ladakh students to register, upload documents, and track eligibility.</p>
+      <div class="project-links">
+        <a href="#" class="btn">View</a>
+        <a href="#" class="btn">GitHub</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>Fitness Tracker – Console Project</h3>
+      <p>Built a Java console application to track user activities with date, duration, and calories burned. Used object-oriented design to manage activities like Running and Cycling with dynamic calorie calculations. Integrated Java Time API and formatted activity reports with filtering and display options.</p>
+      <div class="project-links">
+        <a href="https://github.com/bhavadharani-sudhakaran-05/console-Project-" target="_blank" class="btn">GitHub</a>
+        <a href="#" class="btn">View</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>Hospital Management System – Console Project</h3>
+      <p>Developed a Java console-based application to manage hospital records. Implemented JDBC connectivity with MySQL for storing and retrieving patient and doctor details. Features include adding and viewing patients/doctors through a menu-driven interface. Designed the database schema and applied object-oriented principles for modularity.</p>
+      <div class="project-links">
+        <a href="https://github.com/bhavadharani-sudhakaran-05/Hospital-Management-System-Console-" target="_blank" class="btn">GitHub</a>
+        <a href="#" class="btn">View</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>Weather Now</h3>
+      <p>A weather application that shows real-time weather updates using API integration.</p>
+      <div class="project-links">
+        <a href="https://github.com/bhavadharani-sudhakaran-05/WeatherNow" target="_blank" class="btn">GitHub</a>
+        <a href="#" class="btn">View</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>UI/UX Project: Furniro – Furniture Website (Figma Prototype)</h3>
+      <p>Designed a modern, responsive furniture shopping website focused on clean UI and user experience.</p>
+      <div class="project-links">
+        <a href="https://www.linkedin.com/posts/bhavadharani-s-05it_excited-to-share-my-latest-design-project-activity-7355959636312666112-7suQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEbxr1QBSWbCi8bWCKX68Xw0jkefpd1L6nI" target="_blank" class="btn">View Prototype</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="timeline">
+  <h2>Education Timeline</h2>
+  <div class="timeline">
+    <div class="timeline-item active">
+      <h4>2023-2027</h4>
+      <p>Sri Shakthi Institute of Engineering and Technology, B.Tech in IT | CGPA: 8.54</p>
+    </div>
+    <div class="timeline-item active">
+      <h4>2016-2023</h4>
+      <p>Sri Aravindhar Balar Higher Secondary School | SSLC & HSC: 86%</p>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <h2>Certifications</h2> <br><br>
+  <div class="certifications-grid">
+    <div class="cert-card">
+      <h3>Digital Wireframing with Figma</h3>
+      <a href="https://media.licdn.com/dms/image/v2/D5622AQEKAjgTVxtVuQ/feedshare-shrink_2048_1536/B56ZhWgr.0HQAw-/0/1753798066957?e=1762992000&v=beta&t=4a6ZSiCLQu1unr72uc6WckZn5yxytFEbpvcMHXpvYAE" target="_blank" class="btn">View Certificate</a>
+    </div>
+    <div class="cert-card">
+      <h3>Full Stack Development – Novitech</h3>
+      <a href="https://media.licdn.com/dms/image/v2/D5622AQE7E84tBBr7-A/feedshare-shrink_800/B56ZhWkQyNHkAg-/0/1753799015303?e=1762992000&v=beta&t=Muf5LJhiSAZe52MnWzKDc3xqMOr8b_a4cw2bisf44gg" target="_blank" class="btn">View Certificate</a>
+    </div>
+    <div class="cert-card">
+      <h3>Introduction to Front-End Development – Udemy</h3>
+      <a href="https://media.licdn.com/dms/image/v2/D5622AQH8z8JX2RClow/feedshare-shrink_800/B56ZhXB_rhHcAg-/0/1753806799196?e=1762992000&v=beta&t=tn7z5igDIAyJdTIEGtrGRzLxKk-2tckL0sWyhQCMZsw" target="_blank" class="btn">View Certificate</a>
+    </div>
+    <div class="cert-card">
+      <h3>UI/UX Hackathon</h3>
+      <a href="https://media.licdn.com/dms/image/v2/D5622AQFjmfbhsFQVag/feedshare-shrink_800/B56Zh7c3mwHcAg-/0/1754417823515?e=1762992000&v=beta&t=4rvOib63K4la5Yr8hDCgUFcKUeXBdxcvxb0okKcdJGo" target="_blank" class="btn">View Certificate</a>
+    </div>
+    <div class="cert-card">
+      <h3>Common Aptitude Test – Labmentix</h3>
+      <a href="https://media.licdn.com/dms/image/v2/D5622AQEQKXZXJMMuJA/feedshare-shrink_800/B56ZkyPsWwJwAk-/0/1757484599382?e=1762992000&v=beta&t=2214LKyAa0ECm9yXQiNl1Ba2r8labKyQfOY6UW4JfsI" target="_blank" class="btn">View Certificate</a>
+    </div>
+  </div>
+</section>
+
+<section id="internship">
+  <h2>Internship</h2>
+  <br><br>
+  <div class="certifications-grid">
+    <div class="cert-card">
+      <h3>Software Development Internship</h3>
+      <p>Excited to start my internship in software development.</p>
+      <a href="https://www.linkedin.com/posts/bhavadharani-s-05it_im-happy-to-share-that-im-starting-a-new-activity-7379903325770539008-7DD_?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEbxr1QBSWbCi8bWCKX68Xw0jkefpd1L6nI" target="_blank" class="btn">View LinkedIn Post</a>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <h2>Achievements</h2>
+  <br>
+  <br>
+
+  <ul>
+    <li>Web Development Workshop Certification: Participated in hands-on full-stack web development training.</li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <form action="https://formspree.io/f/mwkgrzwy" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>© 2025 Bhavadharani S | Designed & Developed with 💜</footer> 
+
+<script>
+// Typing Effect
+const text="Bhavadharani S 👩‍💻"; let i=0;
+function typeEffect(){
+  if(i<text.length){
+    document.querySelector('.typing').textContent+=text.charAt(i);
+    i++;
+    setTimeout(typeEffect,100);
+  }
+}
+typeEffect();
+
+// Section Reveal
+const sections=document.querySelectorAll("section");
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add("visible");}
+  });
+},{threshold:0.2});
+sections.forEach(sec=>observer.observe(sec));
+
+// Theme Toggle
+const themeToggle=document.getElementById("themeToggle");
+themeToggle.addEventListener("click",()=>{
+  document.body.classList.toggle("light");
+  themeToggle.textContent=document.body.classList.contains("light")?"🌙":"☀️";
+});
+
+// Skills animation
+const skills=document.querySelectorAll('.liquid-circle');
+skills.forEach(skill=>{
+  let percent=parseInt(skill.dataset.percent);
+  let span=skill.querySelector('.percent');
+  let count=0;
+  let interval=setInterval(()=>{
+    if(count>=percent){clearInterval(interval);}
+    else{count++; span.textContent=count+'%';}
+  },20);
+});
+</script>
+</body>
+</html>

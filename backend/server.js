@@ -12,5 +12,8 @@ app.post('/api',(req,res)=>{
     const temp=req.body;
     res.json(temp);
 })
-app.listen(4000,()=>{console.log("running successfully")
- })
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});

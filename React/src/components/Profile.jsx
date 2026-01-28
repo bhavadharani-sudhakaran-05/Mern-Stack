@@ -1,4 +1,8 @@
-const Profile = ({ name, age, skills }) => {
+import {useContext} from "react"
+import {userContext} from "../App"
+
+const Profile = ({ age, skills }) => {
+  const name=useContext(userContext)
   return (
     <>
       <div>App</div>

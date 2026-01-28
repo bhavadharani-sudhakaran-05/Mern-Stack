@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 
 const Form = () => {
   const [form, setForm] = useState({
@@ -7,6 +7,9 @@ const Form = () => {
     age: "",
     depart: ""
   });
+   useEffect (()=>{
+  console.log("from useEffect");
+ },[form])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
